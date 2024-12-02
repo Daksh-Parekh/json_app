@@ -3,6 +3,7 @@ import 'package:json_app/screens/album_page/view/album_page.dart';
 import 'package:json_app/screens/comment_screen/view/comment_screen.dart';
 import 'package:json_app/screens/home_page/views/home_page.dart';
 import 'package:json_app/screens/photo_page/view/photo_page.dart';
+import 'package:json_app/screens/post_dummy_json/views/dummy_post.dart';
 import 'package:json_app/screens/todo_page/view/todo_page.dart';
 import 'package:json_app/screens/user_page/view/user_page.dart';
 

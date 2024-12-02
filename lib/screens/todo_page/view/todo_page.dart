@@ -12,6 +12,13 @@ class TodoPage extends StatefulWidget {
 class _TodoPageState extends State<TodoPage> {
   late CommentProvider cread, cwatch;
   @override
+  void initState() {
+    context.read<CommentProvider>().getToDoJsonData();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     cread = context.read<CommentProvider>();
     cwatch = context.watch<CommentProvider>();
@@ -23,16 +30,16 @@ class _TodoPageState extends State<TodoPage> {
       body: Padding(
         padding: EdgeInsets.all(16),
         child: ListView.builder(
-          itemCount: cwatch.todos.length,
+          itemCount: cwatch.todosList.length,
           itemBuilder: (context, index) {
             return ListTile(
-              leading: Text("${cwatch.todos[index]["id"]}"),
+              leading: Text("${cwatch.todosList[index].id}"),
               title: Text(
-                "${cread.todos[index]['title']}",
+                "${cread.todosList[index].title}",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              subtitle: Text("${cwatch.todos[index]['completed']}"),
+              subtitle: Text("${cwatch.todosList[index].complete}"),
             );
           },
         ),

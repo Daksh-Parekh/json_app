@@ -12,6 +12,13 @@ class PhotoPage extends StatefulWidget {
 class _PhotoPageState extends State<PhotoPage> {
   late CommentProvider cread, cwatch;
   @override
+  void initState() {
+    context.read<CommentProvider>().getJsonPhotoData();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     cread = context.read<CommentProvider>();
     cwatch = context.watch<CommentProvider>();
@@ -23,16 +30,16 @@ class _PhotoPageState extends State<PhotoPage> {
       body: Padding(
         padding: EdgeInsets.all(16),
         child: ListView.builder(
-          itemCount: cwatch.photos.length,
+          itemCount: cwatch.photosList.length,
           itemBuilder: (context, index) {
             return ListTile(
-              leading: Text("${cwatch.photos[index]["id"]}"),
+              leading: Text("${cwatch.photosList[index].id}"),
               title: Text(
-                "${cread.photos[index]['title']}",
+                "${cread.photosList[index].title}",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              subtitle: Text("${cwatch.photos[index]['url']}"),
+              subtitle: Text("${cwatch.photosList[index].url}"),
             );
           },
         ),

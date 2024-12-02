@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:json_app/main.dart';
+import 'package:json_app/screens/comment_screen/model/json_app_model.dart';
 import 'package:json_app/screens/home_page/provider/json_bank_provider.dart';
 import 'package:json_app/utils/helper/json_helper.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,13 @@ class CommentScreen extends StatefulWidget {
 class _CommentScreenState extends State<CommentScreen> {
   late CommentProvider cread, cwatch;
   @override
+  void initState() {
+    context.read<CommentProvider>().getJsoncommentsData();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     cread = context.read<CommentProvider>();
     cwatch = context.watch<CommentProvider>();
@@ -25,13 +33,13 @@ class _CommentScreenState extends State<CommentScreen> {
         itemCount: cwatch.comments.length,
         itemBuilder: (context, index) {
           return ListTile(
-            leading: Text("${cwatch.comments[index]["id"]}"),
+            leading: Text("${cwatch.comments[index].id}"),
             title: Text(
-              "${cwatch.comments[index]["name"]}",
+              "${cwatch.comments[index].name}",
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
-            subtitle: Text("~ ${cread.comments[index]["email"]}"),
+            subtitle: Text("~ ${cread.comments[index].email}"),
           );
         },
       ),

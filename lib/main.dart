@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(
-          value: CommentProvider()..getJsonData(),
+          value: CommentProvider(),
         ),
       ],
       child: MaterialApp(

@@ -12,6 +12,13 @@ class AlbumPage extends StatefulWidget {
 class _AlbumPageState extends State<AlbumPage> {
   late CommentProvider cread, cwatch;
   @override
+  void initState() {
+    context.read<CommentProvider>().getJsonAlbumData();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     cread = context.read<CommentProvider>();
     cwatch = context.watch<CommentProvider>();
@@ -23,12 +30,12 @@ class _AlbumPageState extends State<AlbumPage> {
       body: Padding(
         padding: EdgeInsets.all(16),
         child: ListView.builder(
-          itemCount: cwatch.albums.length,
+          itemCount: cwatch.albumsList.length,
           itemBuilder: (context, index) {
             return ListTile(
-              leading: Text("${cwatch.albums[index]["id"]}"),
+              leading: Text("${cwatch.albumsList[index].id}"),
               title: Text(
-                "${cread.albums[index]['title']}",
+                "${cwatch.albumsList[index].title}",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
